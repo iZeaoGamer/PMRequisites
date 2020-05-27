@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace HyperFlareMC\PMRequisites;
 
+use HyperFlareMC\PMRequisites\commands\BreakCommand;
 use HyperFlareMC\PMRequisites\commands\Broadcast;
 use HyperFlareMC\PMRequisites\commands\ClearHotBar;
 use HyperFlareMC\PMRequisites\commands\ClearInventory;
@@ -13,6 +14,8 @@ use HyperFlareMC\PMRequisites\commands\Feed;
 use HyperFlareMC\PMRequisites\commands\Fly;
 use HyperFlareMC\PMRequisites\commands\GetPos;
 use HyperFlareMC\PMRequisites\commands\Heal;
+use HyperFlareMC\PMRequisites\commands\moderation\Kick;
+use HyperFlareMC\PMRequisites\commands\moderation\KickAll;
 use HyperFlareMC\PMRequisites\commands\Nick;
 use HyperFlareMC\PMRequisites\commands\Ping;
 use HyperFlareMC\PMRequisites\commands\Repair;
@@ -26,33 +29,13 @@ class Main extends PluginBase{
 
     public function onEnable() : void{
         $this->getServer()->getPluginManager()->registerEvents(new EventListener($this), $this);
-        $this->registerCommands();
         $commands = [
             "say",
-            "me"
+            "me",
+            "kick"
         ];
         $this->unregisterCommands($commands);
-    }
-
-    public function registerCommands() : void{
-        $this->getServer()->getCommandMap()->registerAll($this->getName(), [
-            new Broadcast(),
-            new ClearHotBar(),
-            new ClearInventory(),
-            new ClearLag(),
-            new Compass(),
-            new Feed(),
-            new Fly(),
-            new GetPos(),
-            new Heal(),
-            new Nick(),
-            new Ping(),
-            new Repair(),
-            new SetSpawn(),
-            new Spawn(),
-            new Sudo(),
-            new Vanish(),
-        ]);
+        $this->registerCommands();
     }
 
     /**
@@ -66,6 +49,30 @@ class Main extends PluginBase{
                 $commandMap->unregister($cmd);
             }
         }
+    }
+
+    public function registerCommands() : void{
+        $this->getServer()->getCommandMap()->registerAll($this->getName(), [
+            new BreakCommand(),
+            new Broadcast(),
+            new ClearHotBar(),
+            new ClearInventory(),
+            new ClearLag(),
+            new Compass(),
+            new Feed(),
+            new Fly(),
+            new GetPos(),
+            new Heal(),
+            new Kick(),
+            new KickAll(),
+            new Nick(),
+            new Ping(),
+            new Repair(),
+            new SetSpawn(),
+            new Spawn(),
+            new Sudo(),
+            new Vanish(),
+        ]);
     }
 
 }
