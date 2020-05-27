@@ -1,0 +1,6 @@
+---
+name: PMRequisites
+version: 0.0.1
+main: HyperFlareMC\PMRequisites\Main
+api: 3.12.2
+...
