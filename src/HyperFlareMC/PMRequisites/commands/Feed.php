@@ -44,7 +44,7 @@ class Feed extends Command{
             $target->setFood(20);
             $target->setSaturation(20);
             $target->sendMessage(TF::GREEN . "You have been fed by " . TF::YELLOW . $sender->getName() . TF::GREEN . "!");
-            $sender->sendMessage(TF::GREEN . "You have fed " . $target->getName() . TF::GREEN . "!");
+            $sender->sendMessage(TF::GREEN . "You have fed " . TF::YELLOW . $target->getName() . TF::GREEN . "!");
         }
     }
 

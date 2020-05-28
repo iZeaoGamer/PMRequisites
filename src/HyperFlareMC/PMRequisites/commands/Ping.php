@@ -30,15 +30,32 @@ class Ping extends Command{
             return;
         }
         if(!isset($args[0])){
-            $playerPing = $sender->getPing();
-            if($playerPing >= 250){
-                $sender->sendMessage(TF::GREEN . "Your ping is " . TF::RED . $playerPing . "ms");
+            $senderPing = $sender->getPing();
+            if($senderPing >= 250){
+                $sender->sendMessage(TF::GREEN . "Your ping is " . TF::RED . $senderPing . "ms");
                 return;
-            }elseif($playerPing >= 150){
-                $sender->sendMessage(TF::GREEN . "Your ping is " . TF::YELLOW . $playerPing . "ms");
+            }elseif($senderPing >= 150){
+                $sender->sendMessage(TF::GREEN . "Your ping is " . TF::YELLOW . $senderPing . "ms");
                 return;
-            }elseif($playerPing >= 0){
-                $sender->sendMessage(TF::GREEN . "Your ping is " . $playerPing . "ms");
+            }elseif($senderPing >= 0){
+                $sender->sendMessage(TF::GREEN . "Your ping is " . $senderPing . "ms");
+                return;
+            }
+        }else{
+            $target = $sender->getServer()->getPlayer($args[0]);
+            if($target === null){
+                $sender->sendMessage(TF::RED . "Player not found!");
+                return;
+            }
+            $targetPing = $target->getPing();
+            if($targetPing >= 250){
+                $sender->sendMessage(TF::YELLOW . $target->getName() . TF::GREEN . "'s ping is " . TF::RED . $targetPing . "ms");
+                return;
+            }elseif($targetPing >= 150){
+                $sender->sendMessage(TF::YELLOW . $target->getName() . TF::GREEN . "'s ping is " . TF::YELLOW . $targetPing . "ms");
+                return;
+            }elseif($targetPing >= 0){
+                $sender->sendMessage(TF::YELLOW . $target->getName() . TF::GREEN . "'s ping is " . $targetPing  . "ms");
                 return;
             }
         }

@@ -42,7 +42,7 @@ class Heal extends Command{
             }
             $target->setHealth(20);
             $target->sendMessage(TF::GREEN . "You have been healed by " . TF::YELLOW . $sender->getName() . TF::GREEN . "!");
-            $sender->sendMessage(TF::GREEN . "You have healed " . $target->getName() . TF::GREEN . "!");
+            $sender->sendMessage(TF::GREEN . "You have healed " . TF::YELLOW . $target->getName() . TF::GREEN . "!");
         }
     }
 }
