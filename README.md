@@ -4,6 +4,33 @@ Essentials for PocketMine-MP
 # Still in development!
 This plugin is still under heavy development! At the moment, most commands are working, and in the future I look to add warps and a teleportation system.
 
+# Features
+
+## Commands and Permissions
+
+- /adventure => pmrequisites.adventure
+- /break => pmrequisites.break
+- /broadcast => pmrequisites.broadcast
+- /clearhotbar => pmrequities.clearhotbar
+- /clearinventory => pmrequisites.clearinventory
+- /clearlag => pmrequisites.clearlag
+- /compass => pmrequisites.compass
+- /creative => pmrequisites.creative
+- /feed => pmrequisites.feed
+- /fly => pmrequisites.fly
+- /getpos => pmrequisites.getpos
+- /heal => pmrequisites.heal
+- /nick => pmrequisites.nick
+- /ping => pmrequisites.ping
+- /repair => pmrequisites.repair
+- /setspawn => pmrequisites.setspawn
+- **/spawn => pmrequisites.spawn**
+- /sudo => pmrequisites.sudo
+- /survival => pmrequisites.survival
+- /vanish => pmrequisites.vanish
+
+**All permissions should be working, but if you have any issues with my typos or anything, open an issue. Also, I bolded `/spawn` because when a player joins it executes the spawn command, this is temporary, but for now, I recommend setting that as a permission for default ranks**
+
 # Installation
 Since this plugin is not officially released on Poggit, you need to download it and either run it from source, or create the `.phar` for it yourself.
 
