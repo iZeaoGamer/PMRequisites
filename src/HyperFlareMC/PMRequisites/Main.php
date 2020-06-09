@@ -19,6 +19,7 @@ use HyperFlareMC\PMRequisites\commands\Heal;
 use HyperFlareMC\PMRequisites\commands\moderation\KickAll;
 use HyperFlareMC\PMRequisites\commands\Nick;
 use HyperFlareMC\PMRequisites\commands\Ping;
+use HyperFlareMC\PMRequisites\commands\Rename;
 use HyperFlareMC\PMRequisites\commands\Repair;
 use HyperFlareMC\PMRequisites\commands\SetSpawn;
 use HyperFlareMC\PMRequisites\commands\Spawn;
@@ -74,6 +75,7 @@ class Main extends PluginBase{
             new KickAll(),
             new Nick(),
             new Ping(),
+            new Rename(),
             new Repair(),
             new SetSpawn(),
             new Spawn(),
