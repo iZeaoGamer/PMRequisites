@@ -26,8 +26,11 @@ This plugin is still under heavy development! At the moment, most commands are w
 - /setspawn => pmrequisites.setspawn
 - **/spawn => pmrequisites.spawn**
 - /sudo => pmrequisites.sudo
+- /supervanish => pmrequisites.supervanish
 - /survival => pmrequisites.survival
 - /vanish => pmrequisites.vanish
+
+With SuperVanish, it is supposed to give the effect that the sender has left the server. So, I made it so the player doesn't show in the Player Listings. Sadly, PMMP had no `getLeaveMessage()` or `getJoinMessage()` function, so I had to make a configuration file for the join and leave messages. When you type `/sv` it will send the default join/leave message. You can edit this in the `config.yml` file, to say your server's leave message. I apologize for this inconvenience, but it was the best way I could get this done.
 
 **All permissions should be working, but if you have any issues with my typos or anything, open an issue. Also, I bolded `/spawn` because when a player joins it executes the spawn command, this is temporary, but for now, I recommend setting that as a permission for default ranks**
 
