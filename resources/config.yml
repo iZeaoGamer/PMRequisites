@@ -1,0 +1,4 @@
+# Tags:
+# {player} -> Get the player's name
+super-vanish-join: "{player} joined!"
+super-vanish-leave: "{player} left!"

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace HyperFlareMC\PMRequisites\commands;
 
+use HyperFlareMC\PMRequisites\Main;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\Player;
@@ -11,7 +12,12 @@ use pocketmine\utils\TextFormat as TF;
 
 class Vanish extends Command{
 
-    public function __construct(){
+    /**
+     * @var Main
+     */
+    private $plugin;
+
+    public function __construct(Main $plugin){
         parent::__construct(
             "vanish",
             "Switch to vanish mode!",
@@ -19,6 +25,7 @@ class Vanish extends Command{
             ["v"]
         );
         $this->setPermission("pmrequisites.vanish");
+        $this->plugin = $plugin;
     }
 
     public function execute(CommandSender $sender, string $commandLabel, array $args){
@@ -34,12 +41,28 @@ class Vanish extends Command{
             $sender->sendMessage($this->usageMessage);
             return;
         }
-        if($sender->isSpectator()){
-            $sender->setGamemode(Player::SURVIVAL);
-            $sender->sendMessage(TF::GREEN . "Vanish mode disabled!");
+        if($this->plugin->isSuperVanished($sender->getName())){
+            $sender->sendMessage(TF::RED . "You must come out of supervanish before enabling vanish");
         }else{
-            $sender->setGamemode(Player::SPECTATOR);
-            $sender->sendMessage(TF::GREEN . "Vanish mode enabled!");
+            $this->toggleVanish($sender);
+        }
+    }
+
+    public function toggleVanish(Player $player): void{
+        if($this->plugin->isVanished($player->getName())){
+            $this->plugin->setVanished($player, false, "vanish");
+            $player->sendMessage(TF::GREEN . "You're no longer vanished!");
+            foreach($this->plugin->getServer()->getOnlinePlayers() as $onlinePlayer){
+                $onlinePlayer->showPlayer($player);
+            }
+        }else{
+            $this->plugin->setVanished($player, true, "vanish");
+            $player->sendMessage(TF::GREEN . "You are now vanished!");
+            foreach($this->plugin->getServer()->getOnlinePlayers() as $onlinePlayer){
+                if(!$this->plugin->isVanished($onlinePlayer->getName()) && $onlinePlayer !== $player){
+                    $onlinePlayer->hidePlayer($player);
+                }
+            }
         }
     }
 
