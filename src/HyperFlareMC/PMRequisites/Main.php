@@ -59,12 +59,18 @@ class Main extends PluginBase{
      */
     public $superVanishLeaveMessage;
 
+    /**
+     * @var string
+     */
+    public $broadcastPrefix;
+
     public function onEnable() : void{
         $this->vanished = [];
         $this->supervanished = [];
         $this->config = $this->getConfig();
         $this->superVanishJoinMessage = $this->config->get("super-vanish-join");
         $this->superVanishLeaveMessage = $this->config->get("super-vanish-leave");
+        $this->broadcastPrefix = $this->config->get("broadcast-prefix");
         $this->getServer()->getPluginManager()->registerEvents(new EventListener($this), $this);
         $commands = [
             "say",
@@ -91,7 +97,7 @@ class Main extends PluginBase{
         $this->getServer()->getCommandMap()->registerAll($this->getName(), [
             new Adventure(),
             new BreakCommand(),
-            new Broadcast(),
+            new Broadcast($this),
             new ClearHand(),
             new ClearHotBar(),
             new ClearInventory(),
