@@ -37,6 +37,10 @@ With SuperVanish, it is supposed to give the effect that the sender has left the
 # Installation
 Since this plugin is not officially released on Poggit, you need to download it and either run it from source, or create the `.phar` for it yourself.
 
+## Releases Page
+
+You can download this plugin from the GitHub *[releases](https://github.com/HyperFlareMC/PMRequisites/releases)* page. Simply download the `.zip` folder, unzip it, then the `.phar` will be waiting for you on the inside.
+
 ## Running From Source
 
 ` - Click the "Clone or Download" Button,` <br />
