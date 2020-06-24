@@ -7,6 +7,7 @@ namespace HyperFlareMC\PMRequisites;
 use HyperFlareMC\PMRequisites\commands\Adventure;
 use HyperFlareMC\PMRequisites\commands\BreakCommand;
 use HyperFlareMC\PMRequisites\commands\Broadcast;
+use HyperFlareMC\PMRequisites\commands\ClearHand;
 use HyperFlareMC\PMRequisites\commands\ClearHotBar;
 use HyperFlareMC\PMRequisites\commands\ClearInventory;
 use HyperFlareMC\PMRequisites\commands\ClearLag;
@@ -91,6 +92,7 @@ class Main extends PluginBase{
             new Adventure(),
             new BreakCommand(),
             new Broadcast(),
+            new ClearHand(),
             new ClearHotBar(),
             new ClearInventory(),
             new ClearLag(),
