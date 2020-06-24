@@ -17,6 +17,7 @@ use HyperFlareMC\PMRequisites\commands\Feed;
 use HyperFlareMC\PMRequisites\commands\Fly;
 use HyperFlareMC\PMRequisites\commands\GetPos;
 use HyperFlareMC\PMRequisites\commands\Heal;
+use HyperFlareMC\PMRequisites\commands\moderation\Kick;
 use HyperFlareMC\PMRequisites\commands\moderation\KickAll;
 use HyperFlareMC\PMRequisites\commands\Nick;
 use HyperFlareMC\PMRequisites\commands\Ping;
@@ -74,7 +75,8 @@ class Main extends PluginBase{
         $this->getServer()->getPluginManager()->registerEvents(new EventListener($this), $this);
         $commands = [
             "say",
-            "me"
+            "me",
+            "kick"
         ];
         $this->unregisterCommands($commands);
         $this->registerCommands();
@@ -108,6 +110,7 @@ class Main extends PluginBase{
             new Fly(),
             new GetPos(),
             new Heal(),
+            new Kick(),
             new KickAll(),
             new Nick(),
             new Ping(),

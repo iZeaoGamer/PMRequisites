@@ -24,14 +24,14 @@ class KickAll extends Command{
             $sender->sendMessage(TF::RED . "You do not have permission to use this command!");
             return;
         }
-        if(count($args) < 1){
-            $reason = "Unspecified";
-        }else{
+        if($args !== []){
             $reason = implode(" ", $args);
+        }else{
+            $reason = "Unspecified";
         }
         foreach($sender->getServer()->getOnlinePlayers() as $player){
             if($player !== $sender){
-                $player->kick($reason, false);
+                $player->kick("Everyone has been kicked!" . TF::EOL . "Reason: " . $reason, false);
             }
         }
         $sender->sendMessage(TF::GREEN . "Kicked all the players for " . TF::YELLOW . $reason . TF::GREEN . "!");
