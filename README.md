@@ -39,7 +39,7 @@ Since this plugin is not officially released on Poggit, you need to download it 
 
 ## Releases Page
 
-You can download this plugin from the GitHub *[releases](https://github.com/HyperFlareMC/PMRequisites/releases)* page. Simply download the `.zip` folder, unzip it, then the `.phar` will be waiting for you on the inside.
+You can download this plugin from the GitHub [releases](https://github.com/HyperFlareMC/PMRequisites/releases) page. Simply download the `.zip` folder, unzip it, then the `.phar` will be waiting for you on the inside. You can then drop it in the `plugins` directory on your server, restart it, and you are good to go!
 
 ## Running From Source
 
