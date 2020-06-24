@@ -1,4 +1,5 @@
 # Tags:
 # {player} -> Get the player's name
-super-vanish-join: "{player} joined!"
-super-vanish-leave: "{player} left!"
+# § -> Color Code symbol, used in the example below
+super-vanish-join: "§b{player} joined!"
+super-vanish-leave: "§b{player} left!"

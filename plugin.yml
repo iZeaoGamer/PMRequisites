@@ -1,6 +1,4 @@
----
 name: PMRequisites
-version: 0.0.1
+version: 0.0.2
 main: HyperFlareMC\PMRequisites\Main
-api: 3.12.2
-...
+api: 3.0.0
