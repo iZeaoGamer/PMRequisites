@@ -24,6 +24,7 @@ use HyperFlareMC\PMRequisites\commands\Ping;
 use HyperFlareMC\PMRequisites\commands\Rename;
 use HyperFlareMC\PMRequisites\commands\Repair;
 use HyperFlareMC\PMRequisites\commands\SetSpawn;
+use HyperFlareMC\PMRequisites\commands\SetWorldSpawn;
 use HyperFlareMC\PMRequisites\commands\Spawn;
 use HyperFlareMC\PMRequisites\commands\Sudo;
 use HyperFlareMC\PMRequisites\commands\SuperVanish;
@@ -68,10 +69,10 @@ class Main extends PluginBase{
     public function onEnable() : void{
         $this->vanished = [];
         $this->supervanished = [];
-        $this->config = $this->getConfig();
-        $this->superVanishJoinMessage = $this->config->get("super-vanish-join");
-        $this->superVanishLeaveMessage = $this->config->get("super-vanish-leave");
-        $this->broadcastPrefix = $this->config->get("broadcast-prefix");
+        $this->config = $this->getConfig()->getAll();
+        $this->superVanishJoinMessage = $this->config["super-vanish-join"];
+        $this->superVanishLeaveMessage = $this->config["super-vanish-leave"];
+        $this->broadcastPrefix = $this->config["broadcast-prefix"];
         $this->getServer()->getPluginManager()->registerEvents(new EventListener($this), $this);
         $commands = [
             "say",
