@@ -21,6 +21,8 @@ This plugin is still under heavy development! At the moment, most commands are w
 - /fly => pmrequisites.fly
 - /getpos => pmrequisites.getpos
 - /heal => pmrequisites.heal
+- /kick => pmrequisites.kick
+- /kickall => pmrequisites.kickall
 - /nick => pmrequisites.nick
 - /ping => pmrequisites.ping
 - /repair => pmrequisites.repair
