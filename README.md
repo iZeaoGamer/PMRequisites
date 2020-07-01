@@ -11,6 +11,7 @@ This plugin is still under heavy development! At the moment, most commands are w
 - /adventure => pmrequisites.adventure
 - /break => pmrequisites.break
 - /broadcast => pmrequisites.broadcast
+- /clearhand => pmrequisites.clearhand
 - /clearhotbar => pmrequities.clearhotbar
 - /clearinventory => pmrequisites.clearinventory
 - /clearlag => pmrequisites.clearlag
