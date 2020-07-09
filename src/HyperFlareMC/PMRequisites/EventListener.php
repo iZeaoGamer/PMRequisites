@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace HyperFlareMC\PMRequisites;
 
 use pocketmine\event\Listener;
-use pocketmine\event\player\PlayerJoinEvent;
+use pocketmine\event\player\PlayerLoginEvent;
 
 class EventListener implements Listener{
 
@@ -18,7 +18,7 @@ class EventListener implements Listener{
         $this->plugin = $plugin;
     }
 
-    public function onJoin(PlayerJoinEvent $event){
+    public function onLogin(PlayerLoginEvent $event){
         $player = $event->getPlayer();
         $player->getServer()->getCommandMap()->dispatch($player, "spawn");
     }
