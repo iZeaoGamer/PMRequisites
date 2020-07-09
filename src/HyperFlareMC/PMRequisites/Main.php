@@ -24,17 +24,31 @@ use HyperFlareMC\PMRequisites\commands\Ping;
 use HyperFlareMC\PMRequisites\commands\Rename;
 use HyperFlareMC\PMRequisites\commands\Repair;
 use HyperFlareMC\PMRequisites\commands\SetSpawn;
-use HyperFlareMC\PMRequisites\commands\SetWorldSpawn;
 use HyperFlareMC\PMRequisites\commands\Spawn;
 use HyperFlareMC\PMRequisites\commands\Sudo;
 use HyperFlareMC\PMRequisites\commands\SuperVanish;
 use HyperFlareMC\PMRequisites\commands\Survival;
 use HyperFlareMC\PMRequisites\commands\Vanish;
+use HyperFlareMC\PMRequisites\task\AutoDenialTask;
+use HyperFlareMC\PMRequisites\commands\teleportation\TPA;
+use HyperFlareMC\PMRequisites\commands\teleportation\TPAccept;
+use HyperFlareMC\PMRequisites\commands\teleportation\TPAHere;
+use HyperFlareMC\PMRequisites\commands\teleportation\TPDeny;
 use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\Config;
 
 class Main extends PluginBase{
+
+    /**
+     * @var array
+     */
+    private $TPRequests = [];
+
+    /**
+     * @var array
+     */
+    private $lastRequest = [];
 
     /**
      * @var array
@@ -122,6 +136,10 @@ class Main extends PluginBase{
             new Sudo(),
             new SuperVanish($this),
             new Survival(),
+            new TPA($this),
+            new TPAccept($this),
+            new TPAHere($this),
+            new TPDeny($this),
             new Vanish($this),
             ]);
     }
@@ -176,6 +194,84 @@ class Main extends PluginBase{
     public function isVanished(string $player): bool{
         if(in_array($player, $this->vanished)){
             return true;
+        }
+        return false;
+    }
+
+    /**
+     * @param Player $requester
+     * @param Player $target
+     * @param string $type
+     */
+    public function addTPRequest(Player $requester, Player $target, string $type): void{
+        $task = $this->getScheduler()->scheduleDelayedTask(new AutoDenialTask($this, $requester, $target), 3000);
+        $this->TPRequests[$requester->getName()] = [$type, $target->getName(), $task->getTaskId()];
+        $this->lastRequest[$target->getName()] = $requester->getName();
+    }
+
+    /**
+     * @param Player $requester
+     */
+    public function removeTPRequest(Player $requester): void{
+        $data = $this->TPRequests[$requester->getName()];
+        unset($this->TPRequests[$requester->getName()]);
+        $this->getScheduler()->cancelTask($data[2]);
+    }
+
+    /**
+     * @param Player $requester
+     * @return string
+     */
+    public function getRequestType(Player $requester): string{
+        return $this->TPRequests[$requester->getName()][0];
+    }
+
+    /**
+     * @param Player $target
+     * @return mixed|Player|null
+     */
+    public function getLastIncomingRequest(Player $target){
+        $search = $this->lastRequest[$target->getName()];
+        if($this->getServer()->getPlayer($search) !== null){
+            return $this->getServer()->getPlayer($search);
+        }
+        return $search;
+    }
+
+    /**
+     * @param Player $player
+     * @return bool
+     */
+    public function hasOutgoingRequest(Player $player): bool{
+        if(in_array($player->getName(), array_keys($this->TPRequests))){
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * @param Player $player
+     * @return bool
+     */
+    public function hasIncomingRequest(Player $player): bool{
+        foreach(array_values($this->TPRequests) as $request){
+            if(in_array($player->getName(), $request)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * @param Player $requester
+     * @param Player $target
+     * @return bool
+     */
+    public function hasIncomingRequestFrom(Player $requester, Player $target): bool{
+        foreach($this->TPRequests[$requester->getName()] as $request){
+            if(in_array($target->getName(), $request)){
+                return true;
+            }
         }
         return false;
     }

@@ -21,8 +21,8 @@ This plugin is still under heavy development! At the moment, most commands are w
 - /fly => pmrequisites.fly
 - /getpos => pmrequisites.getpos
 - /heal => pmrequisites.heal
-- /kick => pmrequisites.kick
-- /kickall => pmrequisites.kickall
+- /kick => pmrequisites.moderation.kick
+- /kickall => pmrequisites.moderation.kickall
 - /nick => pmrequisites.nick
 - /ping => pmrequisites.ping
 - /repair => pmrequisites.repair
@@ -31,6 +31,10 @@ This plugin is still under heavy development! At the moment, most commands are w
 - /sudo => pmrequisites.sudo
 - /supervanish => pmrequisites.supervanish
 - /survival => pmrequisites.survival
+- /tpa => pmrequisites.teleporation.tpa
+- /tpaccept => pmrequisites.teleportation.tpaccept
+- /tpahere => pmrequisites.teleportation.tpahere
+- /tpdeny => pmrequisites.teleportation.tpdeny
 - /vanish => pmrequisites.vanish
 
 With SuperVanish, it is supposed to give the effect that the sender has left the server. So, I made it so the player doesn't show in the Player Listings. Sadly, PMMP had no `getLeaveMessage()` or `getJoinMessage()` function, so I had to make a configuration file for the join and leave messages. When you type `/sv` it will send the default join/leave message. You can edit this in the `config.yml` file, to say your server's leave message. I apologize for this inconvenience, but it was the best way I could get this done.

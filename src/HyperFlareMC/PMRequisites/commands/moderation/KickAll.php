@@ -16,11 +16,11 @@ class KickAll extends Command{
             "Kick all players!",
             TF::RED . "Usage: " . TF::GRAY . "/kickall <reason>"
         );
-        $this->setPermission("pmrequisites.kickall");
+        $this->setPermission("pmrequisites.moderation.kickall");
     }
 
     public function execute(CommandSender $sender, string $commandLabel, array $args){
-        if(!$sender->hasPermission("pmrequisites.kickall")){
+        if(!$sender->hasPermission("pmrequisites.moderation.kickall")){
             $sender->sendMessage(TF::RED . "You do not have permission to use this command!");
             return;
         }

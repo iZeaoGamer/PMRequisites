@@ -18,12 +18,12 @@ class Kick extends Command{
             "Kick another player from the server!",
             TF::RED . "Usage: " . TF::GRAY . "/kick <player> <reason>"
         );
-        $this->setPermission("pmrequisites.kick");
+        $this->setPermission("pmrequisites.moderation.kick");
     }
 
     public function execute(CommandSender $sender, string $commandLabel, array $args){
         $server = Server::getInstance();
-        if(!$sender->hasPermission("pmrequisites.kick")){
+        if(!$sender->hasPermission("pmrequisites.moderation.kick")){
             $sender->sendMessage(TF::RED . "You do not have permission to use this command!");
             return;
         }
